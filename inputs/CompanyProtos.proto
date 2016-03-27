@@ -1,0 +1,20 @@
+option java_package = "org.softlang.company.protobuf";
+option java_outer_classname = "CompanyProtos";
+
+message Company {
+	required string name = 1;
+	repeated Department department = 2;
+}
+
+message Department {
+	required string name = 1;
+	required Employee manager = 2;
+	repeated Department department = 3;
+	repeated Employee employee = 4;
+}
+
+message Employee {
+	required string name = 1;
+	required string address = 2;
+	required double salary = 3;
+}
