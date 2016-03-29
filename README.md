@@ -176,10 +176,10 @@ The contribution follows a standardized structure:
 * inputs contains input files for tests and a schema file.
 * tools contains Protocol Buffer Compiler
 * src/main/java contains the following packages:
-** org.softlang.company.features for implementations of [[Functional requirements]].
-** org.softlang.company.protobuf is generated java class.
+	* org.softlang.company.features for implementations of [[Functional requirements]].
+	* org.softlang.company.protobuf is generated java class.
 * src/test/java contains the following packages:
-** org.softlang.company.tests for [[Technology:JUnit]] test cases for [[Namespace:Feature]]s.
+	* org.softlang.company.tests for [[Technology:JUnit]] test cases for [[Namespace:Feature]]s.
 
 ##Usage
 
