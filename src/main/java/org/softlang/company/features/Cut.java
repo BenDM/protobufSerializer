@@ -9,8 +9,7 @@ public class Cut {
 		C = c.toBuilder();
 		for (Department.Builder d : C.getDepartmentBuilderList())
 			cut(d);
-		c = C.build();
-		return c;
+		return C.build();
 	}
 
 	public static void cut(Department.Builder d) {

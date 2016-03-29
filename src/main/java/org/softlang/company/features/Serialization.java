@@ -16,32 +16,25 @@ public class Serialization {
 		Company c = null;
 		if (!input.exists())
 			return null;
-		InputStream in = null;
+		InputStream inputFile = null;
 		try {
-			in = new FileInputStream(input);
-			int len = in.available();
-			byte[] tempbytes = new byte[len];
-			int byteread = 0;
-
-			while ((byteread = in.read(tempbytes)) != -1) {
-				System.out.print("bytes: ");
-				System.out.write(tempbytes, 0, byteread);
-				System.out.println();
-			}
-
+			inputFile = new FileInputStream(input);
+			int leng = inputFile.available();
+			byte[] bytes = new byte[leng];
+			inputFile.read(bytes);
 			try {
-				c = Company.parseFrom(tempbytes);
+				c = Company.parseFrom(bytes);
 			} catch (InvalidProtocolBufferException e) {
 				e.printStackTrace();
 			}
 
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
-			if (in != null) {
+			if (inputFile != null) {
 				try {
-					in.close();
-				} catch (IOException e1) {
+					inputFile.close();
+				} catch (IOException e) {
 				}
 			}
 		}
@@ -50,23 +43,20 @@ public class Serialization {
 
 	public static void serializeCompany(File output, Company c)
 			throws InvalidProtocolBufferException, FileNotFoundException {
-		byte[] value = c.toByteArray();
-
-		FileOutputStream out = null;
+		byte[] bytes = c.toByteArray();
+		FileOutputStream outputFile = null;
 		if (!output.exists()) {
 			try {
 				output.createNewFile();
-				out = new FileOutputStream(output);
-				out.write(value);
-				out.close();
-
-			} catch (IOException e2) {
-				e2.printStackTrace();
+				outputFile = new FileOutputStream(output);
+				outputFile.write(bytes);
+				outputFile.close();
+			} catch (IOException e) {
+				e.printStackTrace();
 			} finally {
-				if (out != null) {
+				if (outputFile != null) {
 					try {
-						out.close();
-						System.out.println("write done");
+						outputFile.close();
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
